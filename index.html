@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="ky">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BEKO FASHION</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f7f7f7;
+    color: #222;
+}
+
+header {
+    background: #111;
+    color: white;
+    padding: 20px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: #e5b95c;
+    font-size: 25px;
+}
+
+header button {
+    background: #e5b95c;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.hero {
+    background: linear-gradient(#0008,#0008),
+    url("https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1400");
+    background-size: cover;
+    background-position: center;
+    height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.hero h2 {
+    font-size: 42px;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    font-size: 18px;
+}
+
+.products {
+    padding: 45px 7%;
+    text-align: center;
+}
+
+.products h2 {
+    margin-bottom: 30px;
+    font-size: 30px;
+}
+
+.product-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+    gap: 25px;
+}
+
+.card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 12px #0001;
+    padding-bottom: 20px;
+}
+
+.card img {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+}
+
+.card h3 {
+    margin: 15px;
+}
+
+.price {
+    color: #b58a35;
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.add-btn {
+    background: #111;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-btn:hover {
+    background: #b58a35;
+}
+
+/* Корзина */
+
+.cart {
+    background: white;
+    margin: 20px auto;
+    padding: 25px;
+    width: 90%;
+    max-width: 700px;
+    border-radius: 12px;
+    display: none;
+}
+
+.cart h2 {
+    margin-bottom: 20px;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid #ddd;
+    padding: 15px 0;
+}
+
+.cart-item button {
+    padding: 7px 10px;
+    cursor: pointer;
+}
+
+.remove {
+    background: #d33;
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+.total {
+    font-size: 22px;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+.buy-btn {
+    background: #b58a35;
+    color: white;
+    border: none;
+    padding: 14px 25px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* QR төлөм */
+
+.payment {
+    display: none;
+    background: white;
+    width: 90%;
+    max-width: 450px;
+    margin: 30px auto;
+    padding: 25px;
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0 3px 15px #0002;
+}
+
+.payment h2 {
+    margin-bottom: 15px;
+}
+
+.payment img {
+    width: 230px;
+    max-width: 100%;
+    margin: 20px auto;
+    display: block;
+}
+
+.payment p {
+    line-height: 1.6;
+    margin: 10px;
+}
+
+.close-btn {
+    background: #222;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    margin-top: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+footer {
+    background: #111;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+@media(max-width: 500px) {
+    header {
+        padding: 15px;
+    }
+
+    .logo {
+        font-size: 19px;
+    }
+
+    .hero h2 {
+        font-size: 30px;
+    }
+
+    .cart-item {
+        flex-wrap: wrap;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Башкы меню -->
+
+<header>
+    <h1 class="logo">BEKO FASHION</h1>
+
+    <button onclick="toggleCart()">
+        🛒 Корзина (<span id="count">0</span>)
+    </button>
+</header>
+
+<!-- Башкы бет -->
+
+<section class="hero">
+    <div>
+        <h2>BEKO FASHION</h2>
+        <p>Стиль — сенин өзгөчөлүгүң!</p>
+    </div>
+</section>
+
+<!-- Товарлар -->
+
+<section class="products">
+
+<h2>Биздин товарлар</h2>
+
+<div class="product-list">
+
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600">
+        <h3>Футболка</h3>
+        <p class="price">1200 сом</p>
+        <button class="add-btn"
+        onclick="addToCart('Футболка',1200)">
+        Корзинага кошуу
+        </button>
+    </div>
+
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?w=600">
+        <h3>Джинсы</h3>
+        <p class="price">2500 сом</p>
+        <button class="add-btn"
+        onclick="addToCart('Джинсы',2500)">
+        Корзинага кошуу
+        </button>
+    </div>
+
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600">
+        <h3>Бут кийим</h3>
+        <p class="price">3500 сом</p>
+        <button class="add-btn"
+        onclick="addToCart('Бут кийим',3500)">
+        Корзинага кошуу
+        </button>
+    </div>
+
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600">
+        <h3>Куртка</h3>
+        <p class="price">4500 сом</p>
+        <button class="add-btn"
+        onclick="addToCart('Куртка',4500)">
+        Корзинага кошуу
+        </button>
+    </div>
+
+</div>
+</section>
+
+<!-- Корзина -->
+
+<div class="cart" id="cart">
+
+    <h2>🛒 Менин корзинам</h2>
+
+    <div id="cartItems">
+        Корзина азырынча бош.
+    </div>
+
+    <p class="total">
+        Жалпы: <span id="total">0</span> сом
+    </p>
+
+    <button class="buy-btn" onclick="checkout()">
+        Сатып алуу
+    </button>
+
+</div>
+
+<!-- MBank QR төлөм -->
+
+<div class="payment" id="payment">
+
+    <h2>MBank аркылуу төлөө</h2>
+
+    <p>Төлөй турган сумма:</p>
+
+    <h2 id="paymentTotal">0 сом</h2>
+
+ <img src="" alt="">
+    <h2>Бекболот А</h2>
+    <p>+996 (551) 403 334</p>
+    <div id="qrcode"></div>
+    <strong>ELQR</strong>
+</div>" alt="">
+
+  
+    <p>
+        <b>Эскертүү:</b> Төлөмдүн ийгиликтүү өткөнүн
+        MBank тиркемесинен текшер.
+    </p>
+
+    <button class="close-btn" onclick="closePayment()">
+        Жабуу
+    </button>
+
+</div>
+
+<!-- Төмөнкү бөлүк -->
+
+<footer>
+    <p>© 2026 BEKO FASHION</p>
+    <p>Биздин дүкөндү тандаганың үчүн рахмат!</p>
+</footer>
+
+<script>
+
+// Корзинадагы товарлар
+
+let cart = [];
+
+// Товар кошуу
+
+function addToCart(name, price) {
+
+    let product = cart.find(item => item.name === name);
+
+    if (product) {
+        product.quantity++;
+    } else {
+        cart.push({
+            name: name,
+            price: price,
+            quantity: 1
+        });
+    }
+
+    updateCart();
+
+    alert(name + " корзинага кошулду!");
+}
+
+// Корзинаны жаңылоо
+
+function updateCart() {
+
+    let items = document.getElementById("cartItems");
+
+    let total = 0;
+    let count = 0;
+
+    items.innerHTML = "";
+
+    if (cart.length === 0) {
+        items.innerHTML = "Корзина азырынча бош.";
+    }
+
+    cart.forEach((item, index) => {
+
+        total += item.price * item.quantity;
+        count += item.quantity;
+
+        items.innerHTML += `
+        <div class="cart-item">
+
+            <div>
+                <b>${item.name}</b>
+                <br>
+                ${item.price} сом × ${item.quantity}
+            </div>
+
+            <div>
+                <button onclick="changeQuantity(${index},-1)">−</button>
+
+                <button onclick="changeQuantity(${index},1)">+</button>
+
+                <button class="remove"
+                onclick="removeItem(${index})">
+                Өчүрүү
+                </button>
+            </div>
+
+        </div>
+        `;
+    });
+
+    document.getElementById("total").innerText = total;
+
+    document.getElementById("count").innerText = count;
+}
+
+// Товардын санын өзгөртүү
+
+function changeQuantity(index, amount) {
+
+    cart[index].quantity += amount;
+
+    if (cart[index].quantity <= 0) {
+        cart.splice(index, 1);
+    }
+
+    updateCart();
+}
+
+// Товарды өчүрүү
+
+function removeItem(index) {
+
+    cart.splice(index, 1);
+
+    updateCart();
+}
+
+// Корзинаны ачуу жана жабуу
+
+function toggleCart() {
+
+    let box = document.getElementById("cart");
+
+    box.style.display =
+        box.style.display === "block" ? "none" : "block";
+
+    box.scrollIntoView({behavior:"smooth"});
+}
+
+// Сатып алуу
+
+function checkout() {
+
+    if (cart.length === 0) {
+        alert("Корзина бош! Адегенде товар танда.");
+        return;
+    }
+
+    let total = cart.reduce(
+        (sum, item) => sum + item.price * item.quantity, 0
+    );
+
+    document.getElementById("paymentTotal").innerText =
+        total + " сом";
+
+    document.getElementById("payment").style.display = "block";
+
+    document.getElementById("payment").scrollIntoView({
+        behavior: "smooth"
+    });
+}
+
+// QR бөлүмүн жабуу
+
+function closePayment() {
+
+    document.getElementById("payment").style.display = "none";
+}
+
+updateCart();
+
+</script>
+
+</body>
+</html>
